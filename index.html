@@ -9,30 +9,6 @@
   gtag('js', new Date());
 
   gtag('config', 'G-01YEPYM0G4');
-    gtag('event', 'purchase', {
-    'transaction_id': 't_22345',
-    'currency': 'USD',
-    'value': 2.23,
-    user_data: {
-       email_address: 'johnsmith2@email.com',
-       phone_number: '1234567890',
-       address: {
-          first_name: 'jon',
-          last_name: 'smith',
-          city: 'paloalto',
-          region: 'ca',
-          postal_code: '94020',
-          country: 'usa',
-       },
-    },
-    items: [{
-       item_name: 'foo',
-       quantity: 5,
-       price: 123.45,
-       item_category: 'bar',
-       item_brand : 'baz',
-     }],
- });
 </script>
         <!-- Meta Pixel Code -->
             <script>
@@ -55,5 +31,36 @@
     <body>
         <h1>Shop</h1>
         <p>Shop our catalog2</p>
-        </body>
+        <button id="buy">Buy</button>
+        <script>
+             document.getElementById("buy").addEventListener("click", function () {
+                 const transactionID = Math.floor(Math.random()*10000)
+                 console.log('transaction ', transactionID)
+                 gtag('event', 'purchase', {
+                    'transaction_id': `t_${transactionID}`,
+                    'currency': 'USD',
+                    'value': 2.23,
+                    user_data: {
+                       email_address: 'johnsmith2@email.com',
+                       phone_number: '1234567890',
+                       address: {
+                          first_name: 'jon',
+                          last_name: 'smith',
+                          city: 'paloalto',
+                          region: 'ca',
+                          postal_code: '94020',
+                          country: 'usa',
+                       },
+                    },
+                    items: [{
+                       item_name: 'jacket',
+                       quantity: 5,
+                       price: 223.45,
+                       item_category: 'coat',
+                       item_brand : 'testbrand',
+                     }],
+                 });
+             })
+        </script>
+    </body>
 </html>
